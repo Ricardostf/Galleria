@@ -1,0 +1,34 @@
+<p-toast></p-toast>
+
+<div class="grid">
+    <div class="col-12 md:col-8 md:offset-2">
+        <p-card [header]="isEditMode ? 'Editar Usuário' : 'Novo Usuário'" styleClass="shadow-3 border-round-xl">
+            <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" class="p-fluid">
+                
+                <div class="field mb-4">
+                    <label for="nome" class="font-medium text-900">Nome</label>
+                    <input id="nome" type="text" pInputText formControlName="nome" placeholder="Digite o nome completo" [ngClass]="{'ng-invalid ng-dirty': usuarioForm.get('nome')?.invalid && usuarioForm.get('nome')?.touched}">
+                    <small *ngIf="usuarioForm.get('nome')?.hasError('required') && usuarioForm.get('nome')?.touched" class="p-error">O nome é obrigatório.</small>
+                    <small *ngIf="usuarioForm.get('nome')?.hasError('minlength') && usuarioForm.get('nome')?.touched" class="p-error">O nome deve ter no mínimo 3 caracteres.</small>
+                </div>
+
+                <div class="field mb-4">
+                    <label for="login" class="font-medium text-900">Login</label>
+                    <input id="login" type="text" pInputText formControlName="login" placeholder="Digite um login único" [ngClass]="{'ng-invalid ng-dirty': usuarioForm.get('login')?.invalid && usuarioForm.get('login')?.touched}">
+                    <small *ngIf="usuarioForm.get('login')?.invalid && usuarioForm.get('login')?.touched" class="p-error">O login é obrigatório.</small>
+                </div>
+
+                <div class="field mb-4">
+                    <label for="senha" class="font-medium text-900">Senha <span *ngIf="isEditMode" class="text-500 font-normal text-sm">(Deixe em branco para não alterar)</span></label>
+                    <p-password id="senha" formControlName="senha" [toggleMask]="true" [feedback]="false" placeholder="Digite a senha" [ngClass]="{'ng-invalid ng-dirty': usuarioForm.get('senha')?.invalid && usuarioForm.get('senha')?.touched}"></p-password>
+                    <small *ngIf="usuarioForm.get('senha')?.invalid && usuarioForm.get('senha')?.touched" class="p-error">A senha é obrigatória.</small>
+                </div>
+
+                <div class="flex justify-content-end gap-3 mt-5">
+                    <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-secondary p-button-outlined" routerLink="/usuarios"></p-button>
+                    <p-button [label]="isEditMode ? 'Salvar' : 'Criar'" icon="pi pi-check" styleClass="p-button-primary" type="submit" [loading]="loading"></p-button>
+                </div>
+            </form>
+        </p-card>
+    </div>
+</div>
