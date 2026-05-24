@@ -4,14 +4,14 @@
     <div class="col-12 md:col-10 md:offset-1">
         <p-card styleClass="border-none shadow-card border-round-2xl">
             <ng-template pTemplate="header">
-                <div class="px-5 pt-5 pb-3 border-bottom-1 surface-border flex align-items-center gap-3">
+                <div class="px-3 md:px-5 pt-4 md:pt-5 pb-3 border-bottom-1 surface-border flex align-items-center gap-3">
                     <div class="bg-blue-50 border-circle p-2 flex align-items-center justify-content-center">
                         <i class="pi pi-shopping-bag text-blue-600 text-2xl"></i>
                     </div>
                     <h2 class="m-0 text-900 font-bold">{{isViewMode ? 'Detalhes do Pedido' : 'Novo Pedido'}}</h2>
                 </div>
             </ng-template>
-            <div class="p-4">
+            <div class="p-3 md:p-4">
             <ng-container *ngIf="!isViewMode; else viewMode">
                 <form [formGroup]="pedidoForm" (ngSubmit)="onSubmit()" class="p-fluid">
                     
@@ -35,7 +35,7 @@
 
                         <!-- Lista de Itens Adicionados -->
                         <div *ngIf="itensSelecionados.length > 0" class="surface-ground border-round-lg p-3">
-                            <p-table [value]="itensSelecionados" styleClass="p-datatable-sm bg-transparent">
+                            <p-table [value]="itensSelecionados" responsiveLayout="scroll" styleClass="p-datatable-sm bg-transparent">
                                 <ng-template pTemplate="header">
                                     <tr>
                                         <th>Produto</th>
@@ -111,7 +111,7 @@
 
                     <h3 class="mb-3 mt-4 border-bottom-1 surface-border pb-2">Itens do Pedido</h3>
                     
-                    <p-table [value]="pedidoVisualizacao.itens || []" styleClass="p-datatable-striped shadow-soft border-round-lg mb-4 overflow-hidden">
+                    <p-table [value]="pedidoVisualizacao.itens || []" responsiveLayout="scroll" styleClass="p-datatable-striped shadow-soft border-round-lg mb-4 overflow-hidden">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th>Produto</th>

@@ -4,14 +4,14 @@
     <div class="col-12 md:col-8 md:offset-2">
         <p-card styleClass="border-none shadow-card border-round-2xl">
             <ng-template pTemplate="header">
-                <div class="px-5 pt-5 pb-3 border-bottom-1 surface-border flex align-items-center gap-3">
+                <div class="px-3 md:px-5 pt-4 md:pt-5 pb-3 border-bottom-1 surface-border flex align-items-center gap-3">
                     <div class="bg-blue-50 border-circle p-2 flex align-items-center justify-content-center">
                         <i class="pi pi-id-card text-blue-600 text-2xl"></i>
                     </div>
                     <h2 class="m-0 text-900 font-bold">{{isEditMode ? 'Editar Cliente' : 'Novo Cliente'}}</h2>
                 </div>
             </ng-template>
-            <div class="p-3">
+            <div class="p-3 md:p-4">
             <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" class="p-fluid">
                 
                 <div class="field mb-4">

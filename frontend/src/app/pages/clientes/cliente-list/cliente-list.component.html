@@ -15,7 +15,7 @@
     </ng-template>
 
     <div class="p-3">
-        <p-table [value]="clientes" [paginator]="true" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-striped border-round-lg overflow-hidden">
+        <p-table [value]="clientes" [paginator]="true" [rows]="10" [loading]="loading" [rowHover]="true" responsiveLayout="scroll" styleClass="p-datatable-striped border-round-lg overflow-hidden">
         <ng-template pTemplate="header">
             <tr>
                 <th>ID</th>
