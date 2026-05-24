@@ -3,14 +3,14 @@
 
 <p-card styleClass="border-none shadow-card border-round-2xl">
     <ng-template pTemplate="header">
-        <div class="flex align-items-center justify-content-between px-5 pt-5 pb-3 border-bottom-1 surface-border">
+        <div class="flex flex-column md:flex-row align-items-center justify-content-between px-3 md:px-5 pt-4 md:pt-5 pb-3 border-bottom-1 surface-border gap-3 md:gap-0">
             <div class="flex align-items-center gap-3">
                 <div class="bg-blue-50 border-circle p-2 flex align-items-center justify-content-center">
                     <i class="pi pi-users text-blue-600 text-2xl"></i>
                 </div>
-                <h2 class="m-0 text-900 font-bold">Gerenciamento de Usuários</h2>
+                <h2 class="m-0 text-900 font-bold text-center md:text-left text-xl md:text-2xl">Gerenciamento de Usuários</h2>
             </div>
-            <p-button label="Novo Usuário" icon="pi pi-plus" routerLink="/usuarios/novo" styleClass="p-button-primary border-round-lg shadow-soft"></p-button>
+            <p-button label="Novo Usuário" icon="pi pi-plus" routerLink="/usuarios/novo" styleClass="p-button-primary border-round-lg shadow-soft white-space-nowrap"></p-button>
         </div>
     </ng-template>
 
