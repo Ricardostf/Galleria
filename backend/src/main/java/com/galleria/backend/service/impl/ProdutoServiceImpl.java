@@ -5,6 +5,7 @@ import com.galleria.backend.dto.response.ProdutoResponseDTO;
 import com.galleria.backend.entity.Produto;
 import com.galleria.backend.exception.RegraNegocioException;
 import com.galleria.backend.mapper.ProdutoMapper;
+import com.galleria.backend.repository.ItemPedidoRepository;
 import com.galleria.backend.repository.ProdutoRepository;
 import com.galleria.backend.service.ProdutoService;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,12 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     private final ProdutoRepository produtoRepository;
     private final ProdutoMapper produtoMapper;
+    private final ItemPedidoRepository itemPedidoRepository;
 
-    public ProdutoServiceImpl(ProdutoRepository produtoRepository, ProdutoMapper produtoMapper) {
+    public ProdutoServiceImpl(ProdutoRepository produtoRepository, ProdutoMapper produtoMapper, ItemPedidoRepository itemPedidoRepository) {
         this.produtoRepository = produtoRepository;
         this.produtoMapper = produtoMapper;
+        this.itemPedidoRepository = itemPedidoRepository;
     }
 
     @Override
@@ -63,7 +66,11 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Transactional
     public void remover(Long id) {
         Produto produto = getProdutoOuFalhar(id);
-        // Regra de bloqueio de exclusão se estiver em pedido será adicionada depois
+        
+        if (itemPedidoRepository.existsByProdutoId(id)) {
+            throw new RegraNegocioException("Não é possível remover produto que já foi incluído em pedidos.");
+        }
+        
         produtoRepository.delete(produto);
     }
 

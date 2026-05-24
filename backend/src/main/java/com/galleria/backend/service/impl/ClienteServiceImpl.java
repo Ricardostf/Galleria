@@ -6,6 +6,7 @@ import com.galleria.backend.entity.Cliente;
 import com.galleria.backend.exception.RegraNegocioException;
 import com.galleria.backend.mapper.ClienteMapper;
 import com.galleria.backend.repository.ClienteRepository;
+import com.galleria.backend.repository.PedidoRepository;
 import com.galleria.backend.service.ClienteService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +19,12 @@ public class ClienteServiceImpl implements ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final ClienteMapper clienteMapper;
+    private final PedidoRepository pedidoRepository;
 
-    public ClienteServiceImpl(ClienteRepository clienteRepository, ClienteMapper clienteMapper) {
+    public ClienteServiceImpl(ClienteRepository clienteRepository, ClienteMapper clienteMapper, PedidoRepository pedidoRepository) {
         this.clienteRepository = clienteRepository;
         this.clienteMapper = clienteMapper;
+        this.pedidoRepository = pedidoRepository;
     }
 
     @Override
@@ -73,8 +76,11 @@ public class ClienteServiceImpl implements ClienteService {
     @Transactional
     public void remover(Long id) {
         Cliente cliente = getClienteOuFalhar(id);
-        // Regra de bloqueio de exclusão se houver pedido será implementada posteriormente 
-        // ou quando o domínio de pedidos for criado
+        
+        if (pedidoRepository.existsByClienteId(id)) {
+            throw new RegraNegocioException("Não é possível remover cliente que possui pedidos vinculados.");
+        }
+        
         clienteRepository.delete(cliente);
     }
 
