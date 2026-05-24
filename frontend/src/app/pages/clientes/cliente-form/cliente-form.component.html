@@ -1,0 +1,33 @@
+<p-toast></p-toast>
+
+<div class="grid">
+    <div class="col-12 md:col-8 md:offset-2">
+        <p-card [header]="isEditMode ? 'Editar Cliente' : 'Novo Cliente'" styleClass="shadow-3 border-round-xl">
+            <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" class="p-fluid">
+                
+                <div class="field mb-4">
+                    <label for="nome" class="font-medium text-900">Nome</label>
+                    <input id="nome" type="text" pInputText formControlName="nome" placeholder="Digite o nome completo" [ngClass]="{'ng-invalid ng-dirty': clienteForm.get('nome')?.invalid && clienteForm.get('nome')?.touched}">
+                    <small *ngIf="clienteForm.get('nome')?.hasError('required') && clienteForm.get('nome')?.touched" class="p-error">O nome é obrigatório.</small>
+                    <small *ngIf="clienteForm.get('nome')?.hasError('minlength') && clienteForm.get('nome')?.touched" class="p-error">O nome deve ter no mínimo 3 caracteres.</small>
+                </div>
+
+                <div class="field mb-4">
+                    <label for="cpf" class="font-medium text-900">CPF</label>
+                    <input id="cpf" type="text" pInputText formControlName="cpf" placeholder="Apenas números (11 dígitos)" [ngClass]="{'ng-invalid ng-dirty': clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched}">
+                    <small *ngIf="clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched" class="p-error">O CPF é obrigatório e deve conter 11 dígitos.</small>
+                </div>
+
+                <div class="field mb-4">
+                    <label for="telefone" class="font-medium text-900">Telefone</label>
+                    <input id="telefone" type="text" pInputText formControlName="telefone" placeholder="Digite o telefone" [ngClass]="{'ng-invalid ng-dirty': clienteForm.get('telefone')?.invalid && clienteForm.get('telefone')?.touched}">
+                </div>
+
+                <div class="flex justify-content-end gap-3 mt-5">
+                    <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-secondary p-button-outlined" routerLink="/clientes"></p-button>
+                    <p-button [label]="isEditMode ? 'Salvar' : 'Criar'" icon="pi pi-check" styleClass="p-button-primary" type="submit" [loading]="loading"></p-button>
+                </div>
+            </form>
+        </p-card>
+    </div>
+</div>
