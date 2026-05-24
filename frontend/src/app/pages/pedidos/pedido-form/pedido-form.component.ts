@@ -15,6 +15,12 @@ import { TableModule } from 'primeng/table';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FormsModule } from '@angular/forms';
+
+export interface ItemSelecionado {
+  produto: Produto;
+  quantidade: number;
+}
 
 @Component({
   selector: 'app-pedido-form',
@@ -22,6 +28,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule,
     CardModule,
     InputTextModule,
@@ -45,6 +52,9 @@ export class PedidoFormComponent implements OnInit {
   clientes: Cliente[] = [];
   produtos: Produto[] = [];
   pedidoVisualizacao?: Pedido;
+
+  produtoSelecionado: Produto | null = null;
+  itensSelecionados: ItemSelecionado[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -71,8 +81,7 @@ export class PedidoFormComponent implements OnInit {
   initForm(): void {
     this.pedidoForm = this.fb.group({
       descricao: [''],
-      clienteId: [null, [Validators.required]],
-      produtosIds: [[], [Validators.required, Validators.minLength(1)]]
+      clienteId: [null, [Validators.required]]
     });
   }
 
@@ -96,12 +105,59 @@ export class PedidoFormComponent implements OnInit {
     });
   }
 
+  adicionarProduto(): void {
+    if (!this.produtoSelecionado) return;
+    
+    const index = this.itensSelecionados.findIndex(i => i.produto.id === this.produtoSelecionado!.id);
+    
+    if (index !== -1) {
+      this.itensSelecionados[index].quantidade++;
+    } else {
+      this.itensSelecionados.push({ produto: this.produtoSelecionado, quantidade: 1 });
+    }
+    
+    this.produtoSelecionado = null;
+  }
+
+  alterarQuantidade(item: ItemSelecionado, delta: number): void {
+    const novaQuantidade = item.quantidade + delta;
+    if (novaQuantidade > 0) {
+      item.quantidade = novaQuantidade;
+    }
+  }
+
+  removerProduto(item: ItemSelecionado): void {
+    this.itensSelecionados = this.itensSelecionados.filter(i => i.produto.id !== item.produto.id);
+  }
+
+  getTotalParcial(): number {
+    return this.itensSelecionados.reduce((total, item) => total + (item.produto.valor * item.quantidade), 0);
+  }
+
   onSubmit(): void {
     if (this.pedidoForm.valid && !this.isViewMode) {
+      if (this.itensSelecionados.length === 0) {
+        this.messageService.add({ severity: 'warn', summary: 'Aviso', detail: 'Adicione pelo menos um produto ao pedido.' });
+        return;
+      }
+
       this.loading = true;
       const formValue = this.pedidoForm.value;
+      
+      // Expande a lista de itens para um array de IDs repetidos (como o backend espera)
+      const produtosIds: number[] = [];
+      this.itensSelecionados.forEach(item => {
+        for (let i = 0; i < item.quantidade; i++) {
+          produtosIds.push(item.produto.id!);
+        }
+      });
 
-      this.pedidoService.criar(formValue).subscribe({
+      const payload = {
+        ...formValue,
+        produtosIds
+      };
+
+      this.pedidoService.criar(payload).subscribe({
         next: () => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Pedido criado com sucesso' });
           setTimeout(() => this.router.navigate(['/pedidos']), 1000);
