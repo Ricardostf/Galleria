@@ -8,6 +8,7 @@ import com.galleria.backend.exception.RegraNegocioException;
 import com.galleria.backend.mapper.UsuarioMapper;
 import com.galleria.backend.repository.UsuarioRepository;
 import com.galleria.backend.service.UsuarioService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +20,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -33,7 +36,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         Usuario usuario = usuarioMapper.toEntity(requestDTO);
-        // A senha será hasheada na próxima etapa (autenticação com jwt)
+        usuario.setSenha(passwordEncoder.encode(requestDTO.senha()));
+        
         usuario = usuarioRepository.save(usuario);
         
         return usuarioMapper.toResponseDTO(usuario);
@@ -68,7 +72,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setLogin(updateDTO.login());
         
         if (updateDTO.senha() != null && !updateDTO.senha().trim().isEmpty()) {
-            usuario.setSenha(updateDTO.senha());
+            usuario.setSenha(passwordEncoder.encode(updateDTO.senha()));
         }
 
         usuario = usuarioRepository.save(usuario);
