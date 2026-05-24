@@ -18,7 +18,10 @@ export const routes: Routes = [
             { path: 'usuarios/editar/:id', component: UsuarioFormComponent },
             { path: 'clientes', loadComponent: () => import('./pages/clientes/cliente-list/cliente-list.component').then(m => m.ClienteListComponent) },
             { path: 'clientes/novo', loadComponent: () => import('./pages/clientes/cliente-form/cliente-form.component').then(m => m.ClienteFormComponent) },
-            { path: 'clientes/editar/:id', loadComponent: () => import('./pages/clientes/cliente-form/cliente-form.component').then(m => m.ClienteFormComponent) }
+            { path: 'clientes/editar/:id', loadComponent: () => import('./pages/clientes/cliente-form/cliente-form.component').then(m => m.ClienteFormComponent) },
+            { path: 'produtos', loadComponent: () => import('./pages/produtos/produto-list/produto-list.component').then(m => m.ProdutoListComponent) },
+            { path: 'produtos/novo', loadComponent: () => import('./pages/produtos/produto-form/produto-form.component').then(m => m.ProdutoFormComponent) },
+            { path: 'produtos/editar/:id', loadComponent: () => import('./pages/produtos/produto-form/produto-form.component').then(m => m.ProdutoFormComponent) }
         ]
     }
 ];
