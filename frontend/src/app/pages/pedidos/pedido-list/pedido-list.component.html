@@ -1,0 +1,36 @@
+<p-toast></p-toast>
+
+<p-card header="Gerenciamento de Pedidos" styleClass="shadow-3 border-round-xl">
+    
+    <div class="flex justify-content-end mb-4">
+        <p-button label="Novo Pedido" icon="pi pi-plus" routerLink="/pedidos/novo" styleClass="p-button-success border-round-lg shadow-2"></p-button>
+    </div>
+
+    <p-table [value]="pedidos" [paginator]="true" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-striped p-datatable-sm shadow-1 border-round-lg overflow-hidden">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Número</th>
+                <th>Data de Emissão</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pedido>
+            <tr>
+                <td class="font-bold text-primary">{{pedido.numero}}</td>
+                <td>{{pedido.dataEmissao | date:'dd/MM/yyyy HH:mm'}}</td>
+                <td>{{pedido.cliente?.nome}}</td>
+                <td class="font-semibold">{{pedido.total | currency:'BRL':'symbol':'1.2-2'}}</td>
+                <td class="text-center">
+                    <p-button icon="pi pi-eye" styleClass="p-button-rounded p-button-text p-button-info" (onClick)="visualizar(pedido.id)" pTooltip="Visualizar Detalhes"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5" class="text-center py-4">Nenhum pedido encontrado.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

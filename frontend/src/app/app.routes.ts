@@ -21,7 +21,10 @@ export const routes: Routes = [
             { path: 'clientes/editar/:id', loadComponent: () => import('./pages/clientes/cliente-form/cliente-form.component').then(m => m.ClienteFormComponent) },
             { path: 'produtos', loadComponent: () => import('./pages/produtos/produto-list/produto-list.component').then(m => m.ProdutoListComponent) },
             { path: 'produtos/novo', loadComponent: () => import('./pages/produtos/produto-form/produto-form.component').then(m => m.ProdutoFormComponent) },
-            { path: 'produtos/editar/:id', loadComponent: () => import('./pages/produtos/produto-form/produto-form.component').then(m => m.ProdutoFormComponent) }
+            { path: 'produtos/editar/:id', loadComponent: () => import('./pages/produtos/produto-form/produto-form.component').then(m => m.ProdutoFormComponent) },
+            { path: 'pedidos', loadComponent: () => import('./pages/pedidos/pedido-list/pedido-list.component').then(m => m.PedidoListComponent) },
+            { path: 'pedidos/novo', loadComponent: () => import('./pages/pedidos/pedido-form/pedido-form.component').then(m => m.PedidoFormComponent) },
+            { path: 'pedidos/visualizar/:id', loadComponent: () => import('./pages/pedidos/pedido-form/pedido-form.component').then(m => m.PedidoFormComponent) }
         ]
     }
 ];
