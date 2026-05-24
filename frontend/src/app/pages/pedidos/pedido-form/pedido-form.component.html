@@ -2,8 +2,16 @@
 
 <div class="grid">
     <div class="col-12 md:col-10 md:offset-1">
-        <p-card [header]="isViewMode ? 'Detalhes do Pedido' : 'Novo Pedido'" styleClass="shadow-3 border-round-xl">
-            
+        <p-card styleClass="border-none shadow-card border-round-2xl">
+            <ng-template pTemplate="header">
+                <div class="px-5 pt-5 pb-3 border-bottom-1 surface-border flex align-items-center gap-3">
+                    <div class="bg-blue-50 border-circle p-2 flex align-items-center justify-content-center">
+                        <i class="pi pi-shopping-bag text-blue-600 text-2xl"></i>
+                    </div>
+                    <h2 class="m-0 text-900 font-bold">{{isViewMode ? 'Detalhes do Pedido' : 'Novo Pedido'}}</h2>
+                </div>
+            </ng-template>
+            <div class="p-4">
             <ng-container *ngIf="!isViewMode; else viewMode">
                 <form [formGroup]="pedidoForm" (ngSubmit)="onSubmit()" class="p-fluid">
                     
@@ -85,6 +93,7 @@
                 </div>
             </ng-template>
 
+            </div>
         </p-card>
     </div>
 </div>

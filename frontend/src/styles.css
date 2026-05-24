@@ -1,1 +1,114 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    --primary-color: #2563eb;
+    --primary-color-text: #ffffff;
+    --surface-ground: #f8fafc;
+    --surface-section: #ffffff;
+    --surface-card: #ffffff;
+    --surface-border: #e2e8f0;
+    --surface-hover: #f1f5f9;
+    --text-color: #1e293b;
+    --text-color-secondary: #64748b;
+    --border-radius: 12px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--surface-ground);
+    color: var(--text-color);
+}
+
+/* Custom Soft Shadows */
+.shadow-soft {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05) !important;
+}
+
+.shadow-card {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05) !important;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Gradient Backgrounds */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%) !important;
+}
+
+/* Override PrimeNG Table */
+.p-datatable .p-datatable-thead > tr > th {
+    background: #f8fafc !important;
+    color: #475569 !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    padding: 1rem !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    padding: 1rem !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    color: #334155 !important;
+}
+
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+    background: #fcfcfd !important;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+    background: #f1f5f9 !important;
+    transition: background-color 0.2s ease;
+}
+
+/* Buttons hover effect */
+.p-button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.p-button:not(.p-button-text):not(.p-button-outlined):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+}
+
+/* Cards */
+.p-card {
+    border-radius: var(--border-radius) !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05) !important;
+    border: 1px solid var(--surface-border) !important;
+}
+
+.p-card .p-card-header {
+    border-bottom: 1px solid var(--surface-border);
+    padding: 1.5rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-color);
+}
+
+.p-card .p-card-body {
+    padding: 1.5rem !important;
+}
+
+/* Toolbar adjustments */
+.p-toolbar {
+    border: none !important;
+}
+
+/* Inputs */
+.p-inputtext, .p-dropdown, .p-multiselect, .p-password input {
+    border-radius: 8px !important;
+    padding: 0.75rem 1rem !important;
+    border: 1px solid #cbd5e1 !important;
+    transition: all 0.2s ease !important;
+}
+
+.p-inputtext:enabled:focus, .p-dropdown:not(.p-disabled).p-focus, .p-multiselect:not(.p-disabled).p-focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+    border-color: #3b82f6 !important;
+}

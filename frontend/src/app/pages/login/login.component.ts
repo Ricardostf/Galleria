@@ -10,6 +10,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ import { MessageModule } from 'primeng/message';
     PasswordModule,
     ButtonModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    CheckboxModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']

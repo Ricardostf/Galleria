@@ -1,20 +1,25 @@
 <div class="min-h-screen flex flex-column surface-ground">
-    <p-toolbar styleClass="bg-blue-600 text-white border-none border-noround px-5 shadow-2">
+    <!-- Navbar Premium with gradient and shadow -->
+    <p-toolbar styleClass="bg-gradient-primary text-white px-5 py-3 shadow-card z-5">
         <div class="p-toolbar-group-start">
-            <h2 class="m-0 font-bold tracking-wide">GalleriaBank</h2>
-            <div class="ml-5 flex gap-3">
-                <p-button label="Usuários" routerLink="/usuarios" styleClass="p-button-text text-white p-button-plain hover:bg-blue-500"></p-button>
-                <p-button label="Clientes" routerLink="/clientes" styleClass="p-button-text text-white p-button-plain hover:bg-blue-500"></p-button>
-                <p-button label="Produtos" routerLink="/produtos" styleClass="p-button-text text-white p-button-plain hover:bg-blue-500"></p-button>
-                <p-button label="Pedidos" routerLink="/pedidos" styleClass="p-button-text text-white p-button-plain hover:bg-blue-500"></p-button>
+            <div class="flex align-items-center gap-2 cursor-pointer" routerLink="/usuarios">
+                <i class="pi pi-wallet text-3xl text-white"></i>
+                <h2 class="m-0 font-bold tracking-wide text-2xl text-white">GalleriaBank</h2>
+            </div>
+            <div class="ml-6 flex gap-2">
+                <p-button label="Usuários" icon="pi pi-users" routerLink="/usuarios" routerLinkActive="surface-hover text-primary font-bold" styleClass="p-button-text text-white p-button-plain transition-colors transition-duration-200 border-round-lg"></p-button>
+                <p-button label="Clientes" icon="pi pi-id-card" routerLink="/clientes" routerLinkActive="surface-hover text-primary font-bold" styleClass="p-button-text text-white p-button-plain transition-colors transition-duration-200 border-round-lg"></p-button>
+                <p-button label="Produtos" icon="pi pi-box" routerLink="/produtos" routerLinkActive="surface-hover text-primary font-bold" styleClass="p-button-text text-white p-button-plain transition-colors transition-duration-200 border-round-lg"></p-button>
+                <p-button label="Pedidos" icon="pi pi-shopping-cart" routerLink="/pedidos" routerLinkActive="surface-hover text-primary font-bold" styleClass="p-button-text text-white p-button-plain transition-colors transition-duration-200 border-round-lg"></p-button>
             </div>
         </div>
         <div class="p-toolbar-group-end">
-            <p-button icon="pi pi-sign-out" label="Sair" (onClick)="logout()" styleClass="p-button-danger p-button-text text-white hover:bg-red-500"></p-button>
+            <p-button icon="pi pi-sign-out" label="Sair" (onClick)="logout()" styleClass="p-button-danger p-button-outlined bg-white font-bold hover:bg-red-500 hover:text-white transition-colors transition-duration-200 border-round-lg"></p-button>
         </div>
     </p-toolbar>
 
-    <div class="flex-grow-1 p-5 max-w-full">
+    <!-- Main Content Container with max width for better reading -->
+    <div class="flex-grow-1 p-5 w-full xl:w-10 mx-auto">
         <router-outlet></router-outlet>
     </div>
 </div>
