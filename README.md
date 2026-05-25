@@ -1,6 +1,6 @@
-# GalleriaBank
+# GalleriaCRUD
 
-Aplicação full-stack desenvolvida para o desafio GalleriaBank.
+Aplicação full-stack desenvolvida para o desafio GalleriaCRUD.
 
 ## Arquitetura e Tecnologias
 

@@ -40,8 +40,8 @@ public class DataInitConfig {
 
             // Seeder: Clientes
             if (clienteRepository.count() == 0) {
-                Cliente c1 = new Cliente("João da Silva", "11122233344", "joao@email.com");
-                Cliente c2 = new Cliente("Maria Oliveira", "55566677788", "maria@email.com");
+                Cliente c1 = new Cliente("João da Silva", "11122233344", "(35)99102-5453");
+                Cliente c2 = new Cliente("Maria Oliveira", "55566677788", "(11)91349-1234");
                 clienteRepository.saveAll(List.of(c1, c2));
                 System.out.println("Seeder: Clientes criados com sucesso!");
             }
