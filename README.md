@@ -15,7 +15,7 @@ Este projeto é dividido em duas partes principais:
 - **Segurança**: Autenticação stateless utilizando JSON Web Tokens (JWT) providos pela biblioteca `java-jwt`. As senhas são armazenadas com hash `BCrypt`. O endpoint de cadastro de usuários (`POST /usuarios`) foi aberto para permitir criação pública.
 - **Tratamento Global de Exceções**: Uso de `@RestControllerAdvice` para interceptar e padronizar as respostas de erros (regras de negócio e validações).
 - **Banco de Dados**: H2 em memória foi escolhido para simplificar a configuração inicial, recriando as tabelas e dados a cada reinicialização da aplicação. O banco conta com Seeders que inicializam usuários e clientes.
-- **Frontend Moderno**: Uso de Angular 17 com componentes Standalone. O layout utiliza PrimeNG para componentes de UI ricos (Máscaras, Tabelas responsivas, Formulários, Dialogs, Cards) e PrimeFlex para design moderno com Glassmorphism.
+- **Frontend Moderno**: Uso de Angular 17 com componentes Standalone. O layout utiliza PrimeNG para componentes de UI e PrimeFlex para design moderno.
 
 ## Regras de Negócio e API (Endpoints)
 
@@ -97,6 +97,9 @@ start.bat
 Isso iniciará ambos os serviços e você poderá acessar:
 - Frontend: `http://localhost:4200`
 - Backend API: `http://localhost:8080`
+
+> [!WARNING]  
+> **Problemas de Permissão ou Ocultação de Logs:** Como os scripts rodam os serviços em segundo plano ou em janelas agrupadas, mensagens críticas de erro (como falta de permissões, portas ocupadas ou falhas no Node/Java) podem acabar passando despercebidas. Se algo não funcionar como o esperado com a Execução Rápida, **pare os serviços e utilize a Execução Manual Separada (abaixo)**. Rodá-los isoladamente forçará o terminal a exibir o erro detalhado, facilitando a identificação e o conserto!
 
 *(Nota: O banco de dados H2 criará um usuário padrão com login: `admin` e senha: `admin` na inicialização, além de popular alguns clientes iniciais).*
 
