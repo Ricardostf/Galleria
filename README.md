@@ -82,14 +82,21 @@ Para testar métodos protegidos (como `PUT /clientes/1` ou `DELETE /produtos/2`)
 ### Execução Rápida (Recomendado)
 Para facilitar o desenvolvimento, você pode iniciar o Backend e o Frontend simultaneamente com um único comando na raiz do projeto:
 
+**No Linux / Mac (Terminal Bash):**
 ```bash
 ./start.sh
 ```
+*(Para encerrar, basta pressionar `Ctrl+C` no mesmo terminal).*
+
+**No Windows (Prompt de Comando / PowerShell / 2 cliques):**
+```cmd
+start.bat
+```
+*(Isso abrirá duas novas janelas independentes. Para encerrar, basta fechar as janelas do terminal).*
+
 Isso iniciará ambos os serviços e você poderá acessar:
 - Frontend: `http://localhost:4200`
 - Backend API: `http://localhost:8080`
-
-Para encerrar tudo, basta pressionar `Ctrl+C` no mesmo terminal.
 
 *(Nota: O banco de dados H2 criará um usuário padrão com login: `admin` e senha: `admin` na inicialização, além de popular alguns clientes iniciais).*
 
