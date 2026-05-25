@@ -79,26 +79,35 @@ Para testar métodos protegidos (como `PUT /clientes/1` ou `DELETE /produtos/2`)
 - Node.js (versão 18+)
 - Maven
 
-### Executando o Backend
-1. Navegue até a pasta `backend/`.
-2. Execute o comando Maven:
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-3. O backend estará disponível em `http://localhost:8080`.
+### Execução Rápida (Recomendado)
+Para facilitar o desenvolvimento, você pode iniciar o Backend e o Frontend simultaneamente com um único comando na raiz do projeto:
+
+```bash
+./start.sh
+```
+Isso iniciará ambos os serviços e você poderá acessar:
+- Frontend: `http://localhost:4200`
+- Backend API: `http://localhost:8080`
+
+Para encerrar tudo, basta pressionar `Ctrl+C` no mesmo terminal.
+
 *(Nota: O banco de dados H2 criará um usuário padrão com login: `admin` e senha: `admin` na inicialização, além de popular alguns clientes iniciais).*
 
-### Executando o Frontend
-1. Navegue até a pasta `frontend/`.
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
-3. Inicie a aplicação Angular:
-   ```bash
-   npm start
-   ```
-4. O frontend estará disponível em `http://localhost:4200`.
+### Execução Manual Separada
+Caso prefira rodar os serviços em terminais separados:
+
+**Backend:**
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+**Frontend:**
+```bash
+cd frontend
+npm install
+npm start
+```
 
 ## Autor
 Ricardo
