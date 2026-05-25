@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @Component({
   selector: 'app-cliente-form',
@@ -20,7 +21,8 @@ import { ToastModule } from 'primeng/toast';
     CardModule,
     InputTextModule,
     ButtonModule,
-    ToastModule
+    ToastModule,
+    InputMaskModule
   ],
   providers: [MessageService],
   templateUrl: './cliente-form.component.html',
@@ -43,7 +45,7 @@ export class ClienteFormComponent implements OnInit {
   ngOnInit(): void {
     this.clienteForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
-      cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      cpf: ['', [Validators.required]],
       telefone: ['']
     });
 

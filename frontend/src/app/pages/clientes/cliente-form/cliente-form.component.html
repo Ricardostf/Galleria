@@ -23,13 +23,13 @@
 
                 <div class="field mb-4">
                     <label for="cpf" class="font-medium text-900">CPF</label>
-                    <input id="cpf" type="text" pInputText formControlName="cpf" placeholder="Apenas números (11 dígitos)" [ngClass]="{'ng-invalid ng-dirty': clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched}">
-                    <small *ngIf="clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched" class="p-error">O CPF é obrigatório e deve conter 11 dígitos.</small>
+                    <p-inputMask id="cpf" formControlName="cpf" mask="999.999.999-99" placeholder="xxx.xxx.xxx-xx" styleClass="w-full" [ngClass]="{'ng-invalid ng-dirty': clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched}"></p-inputMask>
+                    <small *ngIf="clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched" class="p-error">O CPF é obrigatório e deve ser válido.</small>
                 </div>
 
                 <div class="field mb-4">
                     <label for="telefone" class="font-medium text-900">Telefone</label>
-                    <input id="telefone" type="text" pInputText formControlName="telefone" placeholder="Digite o telefone" [ngClass]="{'ng-invalid ng-dirty': clienteForm.get('telefone')?.invalid && clienteForm.get('telefone')?.touched}">
+                    <p-inputMask id="telefone" formControlName="telefone" mask="(99) 9 9999-9999" placeholder="(xx) x xxxx-xxxx" styleClass="w-full" [ngClass]="{'ng-invalid ng-dirty': clienteForm.get('telefone')?.invalid && clienteForm.get('telefone')?.touched}"></p-inputMask>
                 </div>
 
                 <div class="flex justify-content-end gap-3 mt-5">
